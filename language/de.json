@@ -1,0 +1,7 @@
+{
+    "commands": {
+        "hello": {
+            "output": "Hallo #{user}!"
+        }
+    }
+}

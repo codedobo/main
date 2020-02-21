@@ -1,0 +1,25 @@
+{
+    "commands": {
+        "hello": {
+            "output": "Hello %{u}! You are using CodeDoBo version %{v} by %{d} (https://github.com/codedobo). \r\nUse `modules` to see all modules!"
+        },
+        "ping": {
+            "output": "Pong! :)"
+        },
+        "language": {
+            "usage":"Usage: `language [<Language>]`"
+        },
+        "modules": {
+            "output": "You are using %{c} modules: %{m}! \r\nUse `module <Module>` for help",
+            "delimiter": ", ",
+            "notexist": "The module %{m} does not exist!",
+            "usage": "Usage: `uno modules [<Module>]`",
+            "null":":x: No help for this module :x:"
+        },
+        "help":{
+            "title":"Main module help",
+            "description":"`info` \nGet the info of the bot \n`mod [<Module>]` \nGet all modules or the help of one \n`ping` \nPing this bot",
+            "color":3000534
+        }
+    }
+}
