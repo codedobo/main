@@ -9,22 +9,11 @@ class MainModule include CodeDoBo::BotModule
     @module_manager = module_manager
     @app_class = app_class
     @language = CodeDoBo::Language.new module_manager.client, __dir__ + '/language'
-    setup
     send_message "\u001b[32mSuccessfully started main module!"
   end
   def on_enable
     register_console_commands
     register_user_commands
-  end
-
-  def join(server, _already)
-    send_message "\u001b[96mSet up main module for #{server.id}..."
-    id = server.id
-    language = 'en'
-    prefix = '+cdb'
-    @module_manager.client.query("INSERT IGNORE INTO `main` VALUES (#{id},'#{language}','#{prefix}');")
-    update_prefix
-    send_message "\u001b[32mSuccessfully set up main module for #{server.id}!"
   end
 
   def update_prefix

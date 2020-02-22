@@ -2,13 +2,14 @@
 
 require_relative './index.rb'
 class MainModule
-  def setup
-    send_message "\u001b[96mSet up main module..."
-    @module_manager.client.query("CREATE TABLE IF NOT EXISTS `main` (
-      `SERVERID` int(50) unsigned NOT NULL,
-      `LANGUAGE` varchar(255) NOT NULL,
-      PRIMARY KEY  (`SERVERID`)
-    );")
-    send_message "\u001b[32mSuccessfully set up main module!"
+
+  def join(server, _already)
+    send_message "\u001b[96mSet up main module for #{server.id}..."
+    id = server.id
+    language = 'en'
+    prefix = '+cdb'
+    @module_manager.client.query("INSERT IGNORE INTO `main` VALUES (#{id},'#{language}','#{prefix}');")
+    update_prefix
+    send_message "\u001b[32mSuccessfully set up main module for #{server.id}!"
   end
 end
