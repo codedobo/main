@@ -9,6 +9,7 @@ class MainModule include CodeDoBo::BotModule
     @module_manager = module_manager
     @app_class = app_class
     @language = CodeDoBo::Language.new module_manager.client, __dir__ + '/language'
+    setup
     send_message "\u001b[32mSuccessfully started main module!"
   end
   def on_enable
@@ -17,9 +18,9 @@ class MainModule include CodeDoBo::BotModule
   end
 
   def update_prefix
-    @module_manager.client.query('SELECT * FROM `main`').each do |row|
-      serverID = row['SERVERID']
-      @module_manager.bot.server_prefix[serverID] = row['PREFIX']
+    @module_manager.client[:main].each do |row|
+      serverID = row[:server_id]
+      @module_manager.bot.server_prefix[serverID] = row[:prefix]
     end
   end
 end
