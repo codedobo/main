@@ -14,6 +14,7 @@ class MainModule
     register_hello_command
     register_module_command
     register_ping_command
+    register_language_command
   end
 
   def register_hello_command
@@ -43,6 +44,20 @@ class MainModule
   def register_ping_command
     @app_class.register_user_cmd(:ping, %w[ping p]) do |command, args, event|
       event << format(@language.get_json(event.server.id)['commands']['ping']['output'], u: event.author.username)
+    end
+  end
+
+  def register_language_command
+    @app_class.register_user_cmd(:ping, %w[language lang]) do |command, args, event|
+      if args.length == 1 
+        @module_manager.client.query("UPDATE `main` SET LANGUAGE='#{@module_manager.client.escape(args[0])}' WHERE SERVERID='#{event.server.id}';")
+        event << format(@language.get_json(event.server.id)['commands']['language']['set'], args[0])
+        @language.reload
+      elsif args.length == 0
+        event << format(@language.get_json(event.server.id)['commands']['language']['info'], l: @language.language[event.server.id])
+      else
+        event << @language.get_json(event.server.id)['commands']['language']['usage']
+      end
     end
   end
 
