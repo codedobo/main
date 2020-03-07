@@ -1,7 +1,27 @@
 {
     "commands": {
         "hello": {
-            "output": "Hallo #{user}!"
+            "output": "Hallo %{u}! Du benutzt CodeDoBo Version %{v} von %{d} (https://github.com/codedobo). Discord api version: %{r}! \r\nBenutze `modules` um alle Module zu sehen!"
+        },
+        "ping": {
+            "output": "Pong! :)"
+        },
+        "language": {
+            "set":"Erfolgreich Sprache auf `%{l}` gesetzt!",
+            "info":"Derzeitige Sprache: `%{l}`",
+            "usage":"Benutzung: `language [<Language>]`"
+        },
+        "modules": {
+            "output": "Du benutzt %{c} Module: %{m}! \r\nBenutze `module <Module>` um die Hilfe zu sehen!",
+            "delimiter": ", ",
+            "notexist": "Modul %{m} existiert nicht!",
+            "usage": "Benutzung: `uno modules [<Module>]`",
+            "null":":x: Keine Hilfe für dieses Modul :x:"
+        },
+        "help":{
+            "title":"Hauptmodul Hilfe",
+            "description":"`info` \nBekomme die Info über den Bot \n`mod [<Module>]` \nListe alle Module auf oder bekomme die Hilfe \n`ping` \nPinge diesen Bot",
+            "color":3000534
         }
     }
 }

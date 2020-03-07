@@ -49,13 +49,12 @@ class MainModule
   end
 
   def register_language_command
-    @app_class.register_user_cmd(:ping, %w[language lang]) do |command, args, event|
-      if args.length == 1 
-        @module_manager.client.query("UPDATE `main` SET LANGUAGE='#{@module_manager.client.escape(args[0])}' WHERE SERVERID='#{event.server.id}';")
-        event << format(@language.get_json(event.server.id)['commands']['language']['set'], args[0])
-        @language.reload
-      elsif args.length == 0
-        event << format(@language.get_json(event.server.id)['commands']['language']['info'], l: @language.language[event.server.id])
+    @app_class.register_user_cmd(:language, %w[language lang]) do |command, args, event|
+      if args.length == 1
+        @module_manager.client[:main].where(server_id: event.server.id).update(language: args[0])
+        event << format(@language.get_json(event.server.id)['commands']['language']['set'], l: args[0])
+      elsif args.empty?
+        event << format(@language.get_json(event.server.id)['commands']['language']['info'], l: @module_manager.client[:main].first(server_id: event.server.id)[:language])
       else
         event << @language.get_json(event.server.id)['commands']['language']['usage']
       end

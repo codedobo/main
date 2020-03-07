@@ -7,7 +7,7 @@
             "output": "Pong! :)"
         },
         "language": {
-            "set":"Successfully set the language to %{l}!",
+            "set":"Successfully set the language to `%{l}`!",
             "info":"Current language: `%{l}`",
             "usage":"Usage: `language [<Language>]`"
         },
