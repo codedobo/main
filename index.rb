@@ -5,9 +5,9 @@ require_relative './console-commands.rb'
 require_relative './setup.rb'
 class MainModule include CodeDoBo::BotModule
   def initialize(app_class, module_manager)
-    send_message "\u001b[96mStarting main module..."
     @module_manager = module_manager
     @app_class = app_class
+    send_message "\u001b[96mStarting main module..."
     @language = CodeDoBo::Language.new module_manager.client, __dir__ + '/language'
     setup
     send_message "\u001b[32mSuccessfully started main module!"
