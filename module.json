@@ -1,6 +1,6 @@
 {
     "name": "MainModule",
-    "version": "Beta 1.0.0",
+    "version": "Beta 1.1.0",
     "main": {
         "file": "index.rb",
         "class": "MainModule"
@@ -12,6 +12,6 @@
     "dependencies":[
     ],
     "compactible": [
-        "Beta 1.0.1"
+        "Beta 1.1.0"
     ]
 }
