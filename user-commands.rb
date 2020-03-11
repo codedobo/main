@@ -20,7 +20,7 @@ class MainModule
 
   def register_hello_command
     @app_class.register_user_cmd(:hello, ['', 'hello', 'hi', 'info']) do |_command, _args, event|
-      event << format(@language.get_json(event.server.id)['commands']['hello']['output'], u: event.author.username, v: CodeDoBo.version, d: CodeDoBo.developer, r: Discordrb::VERSION)
+      event << format(@language.get_json(event.server.id)['commands']['hello']['output'], u: event.author.mention, v: CodeDoBo.version, d: CodeDoBo.developer, r: Discordrb::VERSION)
     end
   end
 
